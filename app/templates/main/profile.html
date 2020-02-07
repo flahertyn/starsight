@@ -1,0 +1,71 @@
+{% extends "base.html" %} 
+
+{% block linkitem %}blankpage-link{% endblock %}
+{% block title %}Profile{% endblock %} 
+
+{% block content %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">  
+    <h1 class="h3 mb-0 text-gray-800">
+      {{ user }}'s Profile
+      {# when the user was last seen #}
+      <span class="badge badge-pill badge-primary">
+        {% if user.last_seen %}
+          Last seen {{ moment(user.last_seen).fromNow() }}
+        {% else %}
+          User has not logged in yet
+        {% endif %}
+      </span>
+    </h1>
+  </div>
+
+  <!-- Content Row -->
+  <div class="row">
+    <div class="col-6">
+      <div class="card shadow mb-4">
+				<div class="card-header py-3">
+          {# decription of the card #} 
+					<h6 class="m-0 font-weight-bold text-primary">
+            {{ user }}
+          </h6>
+        </div>
+        {# inside of the card #}
+				<div class="card-body">
+          Email: {{ user.email }}<br/>
+          Phone Number: {{ user.phone }}<br/>
+          Address: {{ user.address }}<br/>
+				</div>
+      </div>
+      <div class="card shadow mb-4">
+				<div class="card-header py-3">
+          {# description of the card #}
+					<h6 class="m-0 font-weight-bold text-primary">About {{ user.first_name }}</h6>
+        </div>
+        {# inside of the card #}
+				<div class="card-body">
+          {{ user.about }}
+				</div>
+			</div>
+    </div>
+    <div class="col-6">
+      {# shows current user profile image #}
+      <img src="{{ user.imgsrc }}" width=429px height=auto style="border-radius: 10px; box-shadow: 2px 2px 10px orange"/>
+    </div>
+    <div class="col-12">
+     {# button to update profile, takes them to settings#} 
+      {% if user == current_user %}
+      <a href="/settings.html" class="btn btn-primary btn-icon-split">
+        <span class="icon text-orange-600">
+          <i class="fas fa-arrow-right"></i>
+        </span>
+        <span class="text">Update Profile</span>
+      </a>
+      {% endif %}
+    </div>
+
+	</div>
+</div>
+
+{% endblock %}
