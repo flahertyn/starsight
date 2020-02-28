@@ -51,10 +51,10 @@
     </div>
     <div class="col-6">
       {# shows current user profile image #}
-      <img src="{{ user.imgsrc }}" width=429px height=auto style="border-radius: 10px; box-shadow: 2px 2px 10px orange"/>
+      <img src="{{ user.imgsrc }}" width=429px height=auto style="border-radius: 10px; box-shadow: 2px 2px 10px green"/>
     </div>
     <div class="col-12">
-     {# button to update profile, takes them to settings#} 
+     {# button to update profile, takes user to settings only if current user #} 
       {% if user == current_user %}
       <a href="/settings.html" class="btn btn-primary btn-icon-split">
         <span class="icon text-orange-600">
